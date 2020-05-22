@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -32,6 +31,13 @@ class CalWin extends JFrame {
     }
 }
 class CalBox extends JPanel {
+    private JPanel Box;
+    private boolean run;
+    private double user_input;
+    private String user_operation;
+    private JButton solution;
+
+
 
     public CalBox() {
         setLayout(new BorderLayout());
@@ -43,6 +49,7 @@ class CalBox extends JPanel {
         solution = new JButton("Hello, mr. Nurlan!");
         solution.setEnabled(false);
         add(solution, BorderLayout.NORTH);
+        String qwerty = String.valueOf(solution);
 
         ActionListener numbers = new InsertAction();
         ActionListener point = new InsertAction();
@@ -85,6 +92,7 @@ class CalBox extends JPanel {
     }
     private class InsertAction implements ActionListener
     {
+
         public void actionPerformed(ActionEvent event)
         {
             String input = event.getActionCommand();
@@ -94,9 +102,11 @@ class CalBox extends JPanel {
             }
             solution.setText(solution.getText() + input);
         }
+
     }
     private class CommandAction implements ActionListener
     {
+
         public void actionPerformed(ActionEvent event)
         {
             String operation = event.getActionCommand();
@@ -123,10 +133,34 @@ class CalBox extends JPanel {
                 run=true;
             }
         }
+        public  class numnum{
+            private double checknum;
+            public numnum(double checknum){
+                this.checknum = Double.parseDouble(solution.getText());
+            }
+            private String getChecknum(){
+                if (checknum > 0){
+                    return checknum + " is grather than 0";
+                }
+                else if(checknum < 0){
+                    return checknum + " is less than 0";
+                }
+                else{
+                    return"number is equal to 0";
+                }
+            }
+
+            public void main(String[] args) {
+                System.out.println(getChecknum());
+            }
+        }
 
         private void txtwrite(double parseDouble) {
             try {
                 File answers = new File("answers.txt");
+
+                numnum qqq = new numnum(Double.parseDouble(solution.getText()));
+                System.out.println(qqq.getChecknum());
                 if (answers.createNewFile()){
                     String answ = solution.getText();
                     byte[] bs = answ.getBytes();
@@ -143,6 +177,8 @@ class CalBox extends JPanel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
         }
     }
     public void Abracadabra(double user_num)
@@ -156,9 +192,10 @@ class CalBox extends JPanel {
         solution.setText("" + new DecimalFormat("0.0").format(user_input));
 
     }
-    private JPanel Box;
-    private boolean run;
-    private double user_input;
-    private String user_operation;
-    private JButton solution;
+//    public String eku() {
+//        String num = solution.getText();
+//        return num;
+//    }
+
 }
+
